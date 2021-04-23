@@ -19,6 +19,9 @@ pool:
 #     Python37:
 #       python.version: '3.7'
 
+variables:
+  python.version: '3.7'
+
 steps:
 - task: UsePythonVersion@0
   inputs:
