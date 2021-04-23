@@ -1,4 +1,4 @@
-from app import add
+from app import add, multi
 
 def test_1():
     assert add(1,2) == 3
