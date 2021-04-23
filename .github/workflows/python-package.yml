@@ -38,11 +38,8 @@ jobs:
       run: |
         pip install pytest
         pip install pytest-cov
-        pytest test_app.py --doctest-modules --junitxml=junit/test-results-${{ matrix.python-version }}.xml
-    - name: Upload pytest test results
-      uses: actions/upload-artifact@v2
+        pytest test_app.py --doctest-modules --junitxml=junit/test-results.xml --cov=./ --cov-report=xml --cov-report=html
+    - name: "Upload coverage to Codecov"
+      uses: codecov/codecov-action@v1
       with:
-        name: pytest-results-${{ matrix.python-version }}
-        path: junit/test-results-${{ matrix.python-version }}.xml
-      # テストに失敗があった場合でもテスト結果が公開されるよう、always()を使って常にこのステップを実行する
-      if: ${{ always() }}
+        fail_ci_if_error: true
